@@ -8,11 +8,17 @@ import edu.udelp.ProgramacionOrienteadaAObjetosMiguelLozano.model.Materia;
 import edu.udelp.ProgramacionOrienteadaAObjetosMiguelLozano.model.Persona.Sexo;
 import edu.udelp.ProgramacionOrienteadaAObjetosMiguelLozano.process.ProcesosControlEscolar;
 import edu.udelp.ProgramacionOrienteadaAObjetosMiguelLozano.process.ProcesosPersona;
+import edu.udelp.ProgramacionOrienteadaAObjetosMiguelLozano.util.Archivos;
 import edu.udelp.ProgramacionOrienteadaAObjetosMiguelLozano.validations.Validaciones;
 
 
 
 public class ControlEscolar {
+	
+	private static final String ARCHIVO_CARRERAS = "carreras.json";
+    private static final String ARCHIVO_MATERIAS = "materias.json";
+    private static final String ARCHIVO_PROFESORES = "profesores.json";
+    private static final String ARCHIVO_ESTUDIANTES = "estudiantes.json";
 
 	public static void main(String[] args) {
 
@@ -27,6 +33,14 @@ public class ControlEscolar {
 		boolean repetir = true, salir = false;
 		Sexo sexo;
 		int opcionEntero, opcionCalificacion = 0;
+		
+		
+		
+		funciones.listaCarreras = Archivos.leerArchivo(ARCHIVO_CARRERAS);
+		funciones.listaMaterias = Archivos.leerArchivo(ARCHIVO_MATERIAS);
+		funciones.listaProfesores = Archivos.leerArchivo(ARCHIVO_PROFESORES);
+		funciones.listaEstudiantes = Archivos.leerArchivo(ARCHIVO_ESTUDIANTES);
+		
 
 		do
 		{
@@ -47,7 +61,8 @@ public class ControlEscolar {
 						nombre = leer.nextLine();
 						nombre = nombre.toUpperCase();
 						funciones.altaDeCarreras(nombre);
-						System.out.println("¡La carrera se ha agregado con éxito!\n" + funciones.mostrarCarreras());
+						Archivos.guardarArchivo(ARCHIVO_CARRERAS, funciones.listaCarreras);
+                        System.out.println("¡La carrera se ha agregado con éxito!\n" + funciones.mostrarCarreras());
 
 						break;
 
@@ -111,6 +126,8 @@ public class ControlEscolar {
 									System.out.println("Ingresa un semestre válido en el rango comprendido, ¡Intenta de nuevo!");
 								}
 							} while (!validaciones.validaSemestre(semestre));
+							
+							Archivos.guardarArchivo(ARCHIVO_MATERIAS, funciones.listaMaterias);
 						}
 						else 
 						{
@@ -160,7 +177,7 @@ public class ControlEscolar {
 								System.out.println("Ingresa una fecha de nacimiento válida (1924 - 2005), ¡Intenta de nuevo!");
 							}
 						} while (!procesos.validarFechaMaestro(fechaNacimiento));
-						
+						Archivos.guardarArchivo(ARCHIVO_PROFESORES, funciones.listaProfesores);
 						break;
 
 					case 4: 
@@ -217,7 +234,7 @@ public class ControlEscolar {
 								System.out.println("Ingresa una fecha de nacimiento válida (1934 - 2007), ¡Intenta de nuevo!");
 							}
 						} while (!procesos.validarFechaMaestro(fechaNacimiento));
-						
+						Archivos.guardarArchivo(ARCHIVO_ESTUDIANTES, funciones.listaEstudiantes);
 						break;
 					
 					case 5:
@@ -274,7 +291,7 @@ public class ControlEscolar {
 								}
 								
 							} while (funciones.buscarMateriaPorId(id) == -1 || salir == true);
-							
+							Archivos.guardarArchivo(ARCHIVO_MATERIAS, funciones.listaMaterias);
 						}
 						break;
 						
@@ -328,7 +345,7 @@ public class ControlEscolar {
 								}
 								
 							} while (!salir);
-							
+							 Archivos.guardarArchivo(ARCHIVO_ESTUDIANTES, funciones.listaEstudiantes);
 						}
 						break;
 					
@@ -401,7 +418,7 @@ public class ControlEscolar {
 								}
 								
 							} while (!salir);
-							
+							Archivos.guardarArchivo(ARCHIVO_ESTUDIANTES, funciones.listaEstudiantes);
 						}
 						break;
 					

@@ -27,7 +27,7 @@ public class App
 		List <Persona> listP = new ArrayList <Persona>();
 		listP.add(p);
 		
-		Archivos.guardaAcrhivo(Persona.class.getName(), listP);
+		Archivos.guardarArchivo(Persona.class.getName(), listP);
 		List <Persona> listaPersona = Archivos.leerArchivo(Persona.class.getName());
 		System.out.println(listaPersona);
  		

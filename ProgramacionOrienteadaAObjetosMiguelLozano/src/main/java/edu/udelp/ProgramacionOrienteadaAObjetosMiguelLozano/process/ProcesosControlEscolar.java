@@ -437,30 +437,5 @@ public class ProcesosControlEscolar {
 			}
 		}
 	}
-/*
-	public Double calcularPromedioSemestreCarrera (Carrera carrera, Integer semestre, Materia materia) {
 
-		Double promedio = 0D;
-		int contadorAlumnos = 0;
-
-		for (int i = 0; i < listaEstudiantes.size(); i++)
-		{
-			if (listaEstudiantes.get(i).getCarrera() == carrera && listaEstudiantes.get(i).getSemestre() == semestre)
-			{
-				for (int j = 0; j < listaEstudiantes.get(i).getMaterias().size(); i++)
-				{
-					if ((buscarPorMateria(listaEstudiantes.get(i), listaEstudiantes.get(i).getMaterias().get(i))) == materia)
-					{
-						promedio += calcularPromedioEstudiante(listaEstudiantes.get(i));
-						contadorAlumnos++;
-					}
-					
-				}
-			}
-		}
-
-		promedio = promedio / contadorAlumnos;
-		return promedio;
-	}
-	*/
 }

@@ -20,6 +20,8 @@ public class PruebaFiguras {
 		fl.getResultado();
 		
 		
+		
+		
 		AbstractTriángulo ft = new TriánguloEquilátero (3D, 5D);
 		ft.getResultado();
 		

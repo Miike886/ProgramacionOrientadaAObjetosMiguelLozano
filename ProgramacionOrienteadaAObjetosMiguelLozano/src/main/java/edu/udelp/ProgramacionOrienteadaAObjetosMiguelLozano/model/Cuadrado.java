@@ -14,6 +14,7 @@ public class Cuadrado extends AbstractFigura {
 		
 		super (lado);
 	}
+	
 	public Double perimetro() {
 		return lado * numLados();
 	}

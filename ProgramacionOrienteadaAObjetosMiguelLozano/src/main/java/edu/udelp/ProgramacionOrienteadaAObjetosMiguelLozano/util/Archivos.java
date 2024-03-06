@@ -14,7 +14,7 @@ public class Archivos {
 
 	private final static String PATH = "C:\\archivos_json\\";
 	
-	public static void guardaAcrhivo (String nombre, List lista) {
+	public static void guardarArchivo (String nombre, List lista) {
 		
 		String filePath = PATH + nombre + ".json";
 		

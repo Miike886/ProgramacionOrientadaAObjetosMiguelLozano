@@ -8,14 +8,15 @@ public abstract class AbstractFigura implements Figura {
 	protected Double lado;
 	
 	public AbstractFigura (Double lado) {
-		
+	
 		this.lado = lado;
 		
 	}
 	
-	
 	public abstract Integer numLados();
+	
 	public abstract String nombreFigura();
+	
 	
 	public void getResultado() {
 		
