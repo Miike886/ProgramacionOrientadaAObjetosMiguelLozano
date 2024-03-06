@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.udelp.ProgramacionOrienteadaAObjetosMiguelLozano.model.AbstractPrenda;
+import edu.udelp.ProgramacionOrienteadaAObjetosMiguelLozano.model.AbstractPrenda.Talla;
+import edu.udelp.ProgramacionOrienteadaAObjetosMiguelLozano.model.AbstractPrenda.TipoPrenda;
 import edu.udelp.ProgramacionOrienteadaAObjetosMiguelLozano.model.Blusa;
 import edu.udelp.ProgramacionOrienteadaAObjetosMiguelLozano.model.Camisa;
 import edu.udelp.ProgramacionOrienteadaAObjetosMiguelLozano.model.Falda;
@@ -51,6 +53,21 @@ public class ProcesosTiendaRopa {
 		listaPrendas.add(prenda);
 	}
 
+	public boolean existePrenda(TipoPrenda tipo, Talla talla) 
+	{
+	    for (int i = 0; i < listaPrendas.size(); i++) 
+	    {
+	    	
+	        AbstractPrenda prenda = listaPrendas.get(i);
+	        
+	        if (prenda.getTipoPrenda() == tipo && prenda.getTalla() == talla) 
+	        {
+	            return true; 
+	        }
+	    }
+	    return false;
+	}
+	
 	public String mostrarPrendas () {
 
 		String cadena = "Id\t|\tNombrePrenda\t|\tTalla\t|\tCantidad\t|\tPrecioCompra\t|\tPrecioVenta\n";

@@ -1,20 +1,9 @@
 package edu.udelp.ProgramacionOrienteadaAObjetosMiguelLozano.main;
 
 import java.util.Scanner;
-
-import edu.udelp.ProgramacionOrienteadaAObjetosMiguelLozano.model.AbstractPrenda;
-import edu.udelp.ProgramacionOrienteadaAObjetosMiguelLozano.model.Carrera;
-import edu.udelp.ProgramacionOrienteadaAObjetosMiguelLozano.model.Estudiante;
-import edu.udelp.ProgramacionOrienteadaAObjetosMiguelLozano.model.Materia;
 import edu.udelp.ProgramacionOrienteadaAObjetosMiguelLozano.model.AbstractPrenda.Talla;
 import edu.udelp.ProgramacionOrienteadaAObjetosMiguelLozano.model.AbstractPrenda.TipoPrenda;
-import edu.udelp.ProgramacionOrienteadaAObjetosMiguelLozano.model.Persona.Sexo;
-import edu.udelp.ProgramacionOrienteadaAObjetosMiguelLozano.model.PantalonMezclilla;
-import edu.udelp.ProgramacionOrienteadaAObjetosMiguelLozano.model.PantalonVestir;
-import edu.udelp.ProgramacionOrienteadaAObjetosMiguelLozano.process.ProcesosControlEscolar;
-import edu.udelp.ProgramacionOrienteadaAObjetosMiguelLozano.process.ProcesosPersona;
 import edu.udelp.ProgramacionOrienteadaAObjetosMiguelLozano.process.ProcesosTiendaRopa;
-import edu.udelp.ProgramacionOrienteadaAObjetosMiguelLozano.util.Archivos;
 import edu.udelp.ProgramacionOrienteadaAObjetosMiguelLozano.validations.Validaciones;
 
 public class TiendaRopa {
@@ -23,17 +12,12 @@ public class TiendaRopa {
 
 
 		Scanner leer = new Scanner (System.in);
-		
 		Validaciones validaciones = new Validaciones();
-		
 		ProcesosTiendaRopa funciones = new ProcesosTiendaRopa();
 		
 		String auxiliar, opcion, id, opcionAuxiliar = "";
-		
-		boolean repetir = true, salir = false;
-		
+		boolean repetir = true;
 		int opcionEntero, opcionTipoPrenda, opcionTalla, unidades;
-		
 		TipoPrenda tipoPrenda = null;
 		Talla talla = null;
 		Double precioCompra, totalVenta, ventaActual;
@@ -56,119 +40,127 @@ public class TiendaRopa {
 
 						System.out.println("Seleccionaste dar de alta una prenda\nIngresa el número del tipo de prenda a ingresar\n1) Pantalón de vestir\n2) Pantalón de mezclilla\n3) Camisa\n4) Falda\n5) Blusa\n6) Playera");
 
-						do
-						{
+					    do 
+					    {
+					        opcionTipoPrenda = leer.nextInt();
 
-							opcionTipoPrenda = leer.nextInt();
+					        if (opcionTipoPrenda > 0 && opcionTipoPrenda < 7) 
+					        {
+					         
+					            if (opcionTipoPrenda == 1) 
+					            {
+					                tipoPrenda = TipoPrenda.PantalonVestir;
+					            } 
+					            else if (opcionTipoPrenda == 2) 
+					            {
+					                tipoPrenda = TipoPrenda.PantalonMezclilla;
+					            }
+					            else if (opcionTipoPrenda == 3)
+					            {
+					                tipoPrenda = TipoPrenda.Camisa;
+					            }
+					            else if (opcionTipoPrenda == 4) 
+					            {
+					                tipoPrenda = TipoPrenda.Falda;
+					            } 
+					            else if (opcionTipoPrenda == 5)
+					            {
+					                tipoPrenda = TipoPrenda.Blusa;
+					            } 
+					            else if (opcionTipoPrenda == 6) 
+					            {
+					                tipoPrenda = TipoPrenda.Playera;
+					            }
 
-							if(opcionTipoPrenda > 0 && opcionTipoPrenda < 7)
-							{
-								
-								if (opcionTipoPrenda == 1)
-								{
-									tipoPrenda = TipoPrenda.PantalonVestir;
-								}
-								else if (opcionTipoPrenda == 2)
-								{
-									tipoPrenda = TipoPrenda.PantalonMezclilla;
-								}
-								else if (opcionTipoPrenda == 3)
-								{
-									tipoPrenda = TipoPrenda.Camisa;
-								}
-								else if (opcionTipoPrenda == 4)
-								{
-									tipoPrenda = TipoPrenda.Falda;
-								}
-								else if (opcionTipoPrenda == 5)
-								{
-									tipoPrenda = TipoPrenda.Blusa;
-								}
-								else if (opcionTipoPrenda == 6)
-								{
-									tipoPrenda = TipoPrenda.Playera;
-								}
-								
-								System.out.println("Selecciona la talla\n1) Chica\n2) Mediana\n3) Grande\n4) Extra Grande");
+					            System.out.println("Selecciona la talla\n1) Chica\n2) Mediana\n3) Grande\n4) Extra Grande");
 
-								do
-								{
-									opcionTalla = leer.nextInt();
+					            do 
+					            {
+					                opcionTalla = leer.nextInt();
 
-									if(opcionTalla > 0 && opcionTalla < 5)
-									{
-										
-										if (opcionTalla == 1)
-										{
-											talla = Talla.CH;
-										}
-										else if (opcionTalla == 2)
-										{
-											talla = Talla.M;
-										}
-										else if (opcionTalla == 3)
-										{
-											talla = Talla.G;
-										}
-										else if (opcionTalla == 4)
-										{
-											talla = Talla.EX;
-										}
-										
-										System.out.println("Ingresa el precio de compra");
-										
-										do
-										{
-											
-											auxiliar = leer.nextLine();
-											
-											if(validaciones.validaFlotante(auxiliar))
-											{
-												precioCompra = Double.parseDouble(auxiliar);
-												
-												System.out.println("Ingresa el número de unidades");
-												
-												do
-												{
-													
-													auxiliar = leer.nextLine();
-													
-													if(validaciones.validaEntero(auxiliar))
-													{
-														unidades = Integer.parseInt(auxiliar);
-														
-														funciones.altaDePrendas(tipoPrenda, talla, precioCompra, unidades);
-														System.out.println("Se ha ingresado la prenda con éxito\n" + funciones.mostrarPrendas());
-													}
-													else
-													{
-														System.out.println("Debes ingresar un número entero");
-													}
-													
-												} while (!validaciones.validaFlotante(auxiliar));
-												
-											}
-											else
-											{
-												System.out.println("Ingresa un precio válido");
-											}
-											
-											
-										} while (!validaciones.validaFlotante(auxiliar));
-										
-									}
-									else
-									{
-										System.out.println("Ingresa una opción válida entre 1 - 4");
-									}
-								} while(opcionTalla < 1 || opcionTalla > 4);
-							}
-							else
-							{
-								System.out.println("Selecciona una opción válida entre 1 - 6");
-							}
+					                if (opcionTalla > 0 && opcionTalla < 5)
+					                {
+					                    if (opcionTalla == 1) 
+					                    {
+					                        talla = Talla.CH;
+					                    } 
+					                    else if (opcionTalla == 2) 
+					                    {
+					                        talla = Talla.M;
+					                    }
+					                    else if (opcionTalla == 3) 
+					                    {
+					                        talla = Talla.G;
+					                    } 
+					                    else if (opcionTalla == 4) 
+					                    {
+					                        talla = Talla.EX;
+					                    }
 
-						} while (opcionTipoPrenda < 1 || opcionTipoPrenda > 6);
+					                    System.out.println("Ingresa el precio de compra");
+
+					                    do 
+					                    {
+					                        auxiliar = leer.nextLine();
+
+					                        if (validaciones.validaFlotante(auxiliar)) 
+					                        {
+					                            precioCompra = Double.parseDouble(auxiliar);
+
+					                            System.out.println("Ingresa el número de unidades");
+
+					                            do 
+					                            {
+					                                auxiliar = leer.nextLine();
+
+					                                if (validaciones.validaEntero(auxiliar)) 
+					                                {
+					                                    unidades = Integer.parseInt(auxiliar);
+
+					                                    
+					                                    if (!funciones.existePrenda(tipoPrenda, talla))
+					                                    {
+					                                        
+					                                        funciones.altaDePrendas(tipoPrenda, talla, precioCompra, unidades);
+					                                        System.out.println("Se ha ingresado la prenda con éxito\n" + funciones.mostrarPrendas());
+					                                    } 
+					                                    else 
+					                                    {
+					                                        System.out.println("Ya existe una prenda con el mismo tipo y talla.");
+					                                    }
+					                                } 
+					                                else 
+					                                {
+					                                    System.out.println("Debes ingresar un número entero");
+					                                }
+					                                
+					                            }
+					                            while (!validaciones.validaEntero(auxiliar));
+
+					                        } 
+					                        else 
+					                        {
+					                            System.out.println("Ingresa un precio válido");
+					                        }
+					                        
+
+					                    } while (!validaciones.validaFlotante(auxiliar));
+
+					                } 
+					                else 
+					                {
+					                    System.out.println("Ingresa una opción válida entre 1 - 4");
+					                }
+					                
+					            } while (opcionTalla < 1 || opcionTalla > 4);
+					            
+					        } 
+					        else 
+					        {
+					            System.out.println("Selecciona una opción válida entre 1 - 6");
+					        }
+
+					    } while (opcionTipoPrenda < 1 || opcionTipoPrenda > 6);
 
 						break;
 
@@ -258,6 +250,8 @@ public class TiendaRopa {
 
 		}while(repetir);
 		
+		leer.close();
 	}
+	
 
 }
